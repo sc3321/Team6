@@ -2,7 +2,7 @@ main:
 	addi	t1, zero, 0xff
 	addi	a0, zero, 0x0
 mloop:
-	addi	ai, zero, 0x0
+	addi	a1, zero, 0x0
 iloop:
 	addi	a0, a1, 0
 	addi	a1, a1, 1
@@ -11,6 +11,8 @@ iloop:
 
 load t1 with 255
 a0 is used as output (a0 = register 10)
+t1 is register 6
+a1 = 11
 
 in mloop: 	a1 is the counter, init to 0.
 

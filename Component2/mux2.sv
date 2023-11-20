@@ -1,5 +1,5 @@
 module mux2 #(
-    parameter       DATA_WIDTH = 12
+    parameter       DATA_WIDTH = 32
 ) (
     input logic                     select,
     input logic [DATA_WIDTH-1:0]    channel0,
@@ -8,6 +8,7 @@ module mux2 #(
     output logic [DATA_WIDTH-1:0]   muxRes
 );
 
-assign muxRes = select ? channel1 : channel0;
+always_comb 
+    assign muxRes = select ? channel1 : channel0;
 
 endmodule
