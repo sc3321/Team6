@@ -1,6 +1,6 @@
 module ControlUnit #(
     input logic                     EQ,                 // 1 if equal, 0 if not equal
-    input logic [6:0]               instr[6:0],         // 7bit opcode
+    input logic [9:0]               instr[9:0],         // 7bit opcode + 3bit func3
     output logic                    RegWrite,
     output logic                    ALUctrl,
     output logic                    ALUsrc,
