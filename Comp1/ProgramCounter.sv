@@ -1,4 +1,4 @@
-module ProgramCounter #(
+module ProgramCounter #(            //works as an adder
     parameter DATA_WIDTH = 4
 )(
     input logic                         clk,
@@ -8,7 +8,6 @@ module ProgramCounter #(
     output logic [DATA_WIDTH-1:0]       PC    
 );
 
-reg [DATA_WIDTH-1:0] next_PC;
 
 always_ff @(posedge clk, posedge rst, posedge PCsrc) begin     //asynchronous
     if (rst)            PC <= 4'b0;
