@@ -1,5 +1,5 @@
 module PCReg #(         //topfile
-    parameter       DATA_WIDTH = 4
+    parameter       DATA_WIDTH = 32
 ) (
     input logic                     clk,               
     input logic                     rst,
