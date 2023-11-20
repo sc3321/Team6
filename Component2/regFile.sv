@@ -1,6 +1,6 @@
 module regFile #(
     parameter       ADD_WIDTH = 5,
-                    DATA_WIDTH = 12
+                    DATA_WIDTH = 32
 )(
     input logic                     clk,
 
@@ -23,6 +23,7 @@ always_ff @ (posedge clk) begin
     if(AD1 != 'b00000) RD1 <= register[AD1];            //output register at RD1
     if(AD2 != 'b00000) RD2 <= register[AD2];            //output register at RD2
     if(AD3 != 'b00000 & WE3) register[AD3] <= WD3;      //store result from WE3
+    a0 <= register[10];
 end
 
 endmodule

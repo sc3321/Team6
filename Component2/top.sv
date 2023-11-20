@@ -1,7 +1,7 @@
 module top #(
     parameter       ADD_WIDTH  = 5,
-                    IMM_WIDTH  = 12,
-                    DATA_WIDTH = 12
+                    IMM_WIDTH  = 32,
+                    DATA_WIDTH = 32
 ) (
     input logic                     clk,
     input logic [ADD_WIDTH-1:0]     rs1,
