@@ -1,5 +1,5 @@
 module alu #(
-    parameter       DATA_WIDTH = 5;
+    parameter           DATA_WIDTH = 12
 ) (
     input logic                     ALUctrl,        // what is this used for?
     input logic [DATA_WIDTH-1:0]    ALUop1,         // 1st data to add

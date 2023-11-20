@@ -1,23 +1,25 @@
 module top #(
-    parameter       DATA_WIDTH = 5
+    parameter       ADD_WIDTH  = 5,
+                    IMM_WIDTH  = 12,
+                    DATA_WIDTH = 12
 ) (
     input logic                     clk,
-    input logic [DATA_WIDTH-1:0]    rs1,
-    input logic [DATA_WIDTH-1:0]    rs2,
-    input logic [DATA_WIDTH-1:0]    rd,
-    input logic [DATA_WIDTH-1:0]    RegWrite,
-    input logic [DATA_WIDTH-1:0]    ImmOp,
+    input logic [ADD_WIDTH-1:0]     rs1,
+    input logic [ADD_WIDTH-1:0]     rs2,
+    input logic [ADD_WIDTH-1:0]     rd,
+    input logic                     RegWrite,
+    input logic [IMM_WIDTH-1:0]     ImmOp,
     input logic                     ALUsrc,
     input logic                     ALUctrl,
 
-    output logic                    a0,
+    output logic [DATA_WIDTH-1:0]   a0,
     output logic                    EQ
 );
 
-logic [DATA_WIDTH-1:5]      regOp2;
-logic [DATA_WIDTH-1:5]      ALUout;
-logic [DATA_WIDTH-1:5]      ALUop1;
-logic [DATA_WIDTH-1:5]      ALUop2;
+logic [DATA_WIDTH-1:0]      regOp2;
+logic [DATA_WIDTH-1:0]      ALUout;
+logic [DATA_WIDTH-1:0]      ALUop1;
+logic [DATA_WIDTH-1:0]      ALUop2;
 
 regFile regFile(
     .clk        (clk),
@@ -45,6 +47,5 @@ alu alu(
     .EQ         (EQ),
     .ALUout     (ALUout)
 );
-
 
 endmodule
