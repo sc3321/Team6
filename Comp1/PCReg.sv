@@ -1,4 +1,4 @@
-module PCReg #(
+module PCReg #(         //topfile
     parameter       DATA_WIDTH = 4
 ) (
     input logic                     clk,               

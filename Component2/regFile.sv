@@ -1,12 +1,12 @@
 module regFile #(
-    parameter       REGISTER_BIT = 5,
-                    DATA_WIDTH = 5
+    parameter       ADD_WIDTH = 5,
+                    DATA_WIDTH = 12
 )(
     input logic                     clk,
 
-    input logic [DATA_WIDTH-1:0]    AD1,     //to extenal in top level | register 1
-    input logic [DATA_WIDTH-1:0]    AD2,     //to extenal | register 2
-    input logic [DATA_WIDTH-1:0]    AD3,     //to extenal | to store results
+    input logic [ADD_WIDTH-1:0]    AD1,     //to extenal in top level | register 1
+    input logic [ADD_WIDTH-1:0]    AD2,     //to extenal | register 2
+    input logic [ADD_WIDTH-1:0]    AD3,     //to extenal | to store results
     input logic [DATA_WIDTH-1:0]    WD3,    //to extenal | write to register
     input logic                     WE3,    //to extenal | write enable
 
@@ -17,7 +17,7 @@ module regFile #(
 
 // create 32 registers
 // initialise all to zero
-logic [DATA_WIDTH-1:0] register [2**REGISTER_BIT-1:0];
+logic [DATA_WIDTH-1:0] register [2**ADD_WIDTH-1:0];
 
 always_ff @ (posedge clk) begin
     if(AD1 != 'b00000) RD1 <= register[AD1];            //output register at RD1
