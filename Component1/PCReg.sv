@@ -7,16 +7,16 @@ module PCReg #(         //topfile
     input logic [DATA_WIDTH-1:0]    ImmOp,
     output logic [DATA_WIDTH-1:0]   PC   
 );
-    logic [DATA_WIDTH-1:0]   next_PC,
+    logic [DATA_WIDTH-1:0]   next_PC;
 
 
-ProgramCounter pc1(
-    .clk(clk),
-    .rst(rst),
-    .PCsrc(PCsrc),
-    .ImmOp(ImmOp),
-    .PC(PC),
-    .next_PC(PC)
+ProgramCounter counter (
+    .clk (clk),
+    .rst (rst),
+    .PCsrc (PCsrc),
+    .ImmOp (ImmOp),
+    .PC (PC),
+    .next_PC (PC)
 );
 
 endmodule
