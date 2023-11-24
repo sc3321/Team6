@@ -15,7 +15,8 @@ ProgramCounter pc1(
     .rst(rst),
     .PCsrc(PCsrc),
     .ImmOp(ImmOp),
-    .PC(next_PC)
+    .PC(PC),
+    .next_PC(PC)
 );
 
 endmodule
