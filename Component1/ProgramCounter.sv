@@ -11,7 +11,7 @@ module ProgramCounter #(            //works as an adder
 
 always_ff @(posedge clk, posedge rst, posedge PCsrc) begin     //asynchronous
     if (rst)            PC <= 32'b0;
-    if (PCsrc)          PC <= PC + ImmOp
+    if (PCsrc)          PC <= PC + ImmOp;
     else                PC <= PC + 4'b0100;  
 end
 
