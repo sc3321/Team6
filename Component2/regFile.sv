@@ -17,7 +17,9 @@ module regFile #(
 
 // create 32 registers
 // initialise all to zero
-logic [DATA_WIDTH-1:0] register [2**ADD_WIDTH-1:0];
+// this number of location is 2**ADD_WIDTH-1 but this is too large!!
+// so we use only what we need.
+logic [DATA_WIDTH-1:0] register [31:0];
 
 always_ff @ (posedge clk) begin
     if(AD1 != 'b00000) RD1 <= register[AD1];            //output register at RD1
