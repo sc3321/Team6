@@ -3,31 +3,32 @@ module combine#(
 )(
         input logic     clk,
         input logic     rst,
-        output logic    [8:1]a0 
+        output logic    [31:0]a0 
         
 );
-        logic   [4:1]PC;
-        logic   [32:1]instr;
-        logic   [check]ImmSrc;
-        logic   [check]RegWrite;
-        logic   [check]ALUctrl;
-        logic   [check]ALUsrc;
-        logic   [check]PCsrc;
+        logic   [31:0]PC;
+        logic   [31:0]instr;
+        logic   ImmSrc;
+        logic   RegWrite;
+        logic   ALUctrl;
+        logic   ALUsrc;
+        logic   PCsrc;
         logic   EQ;
-Instr_Mem(
-        .RD(instr),
-        .A(PC)
+        logic   [31:0]ImmOp;
+rom      rom1(
+        .inscode(instr),
+        .pc(PC)///// this rom pc bits is 4 bits and might contradict the junwon 32 bit pc.
 );
-PC_Reg(////////jungwon
+PCReg           PCRegJW(////////jungwon i think there might me some error in the code? im not sure how it outputs.
         .rst(rst)
         .clk(clk)
         .PC(PC) 
         .ImmOp(ImmOp)
         .PCsrc(PCsrc)
 );
-Control_Unit(
-        .in(instr)// check name of port
-        .ImmSrc(ImmSrc),
+controlUnit    controlUnit1(
+        .instr(instr)
+        .Immsrc(ImmSrc),
         .RegWrite(RegWrite),
         .ALUctrl(ALUctrl),
         .ALUsrc(ALUsrc),
@@ -36,18 +37,18 @@ Control_Unit(
 
 
 );
-Sign_extend(
-        .in([31:20]),//////check name of port. this is 12 bits immediate.
-        .ImmSrc(ImmSrc),
-        .ImmOp(ImmOp)
+sgnext          sgnext1(
+        .ins(instr),
+        .immSrc(ImmSrc),
+        .immOp(ImmOp)
 )
 
-Reg_File(////////put
-        .AD1([24:20]instr),
-        .AD2([19:15]instr),
-        .AD3([11:7]instr),
+top     topPut(////////put
+        .rs1([24:20]instr),
+        .rs2([19:15]instr),
+        .rd3([11:7]instr),
         .clk(clk),
-        .WE3(RegWrite),
+        .RegWrite(RegWrite),
         .a0(a0),
         .ALUsrc(ALUsrc),
         .ALUctrl(ALUctrl),
